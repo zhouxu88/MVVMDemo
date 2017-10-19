@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.zx.mvvmdemo.R" />
+
+        <variable
+            name="simpleNewsBean"
+            type="com.zx.mvvmdemo.bean.SimpleNewsBean" />
+
+        <variable
+            name="adapter"
+            type="com.zx.mvvmdemo.adapter.NewsAdapter" />
+
+        <variable
+            name="position"
+            type="int" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/header_iv"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            app:imageUrl="@{simpleNewsBean.thumbnail}" />
+
+        <!--标题-->
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toEndOf="@id/header_iv"
+            android:text="@{simpleNewsBean.name}"
+            android:textColor="#000"
+            android:textSize="16sp" />
+
+        <!--描述-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/title_tv"
+            android:layout_below="@id/title_tv"
+            android:layout_marginTop="8dp"
+            android:text="@{simpleNewsBean.description}"
+            android:textSize="14sp" />
+
+        <!--点赞或者取消点赞,onClick()用的lambda表达式-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/header_iv"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="8dp"
+            android:onClick="@{()->adapter.clickDianZan(simpleNewsBean,position)}"
+            app:resId="@{simpleNewsBean.isGood ? R.mipmap.dianzan_press : R.mipmap.dianzan_normal }" />
+
+    </RelativeLayout>
+</layout>
