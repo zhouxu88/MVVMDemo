@@ -17,6 +17,11 @@ import com.zx.mvvmdemo.viewmodel.NewsVM;
 
 import static com.zx.mvvmdemo.constant.MainConstant.LoadData.FIRST_LOAD;
 
+/**
+ * 用的知乎日报等数据，有访问量限制次数，好像1000次，所以后面来的同学会看不见数据和UI的
+ * 不要紧，学会关键逻辑就行。
+ * 注意：干货在real_mvvm 包
+ */
 public class MainActivity extends AppCompatActivity implements INewsView, XRecyclerView.LoadingListener {
 
     private Context mContext;

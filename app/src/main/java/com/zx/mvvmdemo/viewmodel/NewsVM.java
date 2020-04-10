@@ -24,6 +24,19 @@ public class NewsVM implements BaseLoadListener<SimpleNewsBean> {
     private int currPage = 1; //当前页数
     private int loadType; //加载数据的类型
 
+    /**
+     * 注意：这里传入Adapter、View是不对的，mvvm和MVP比较大的区别是：vm和v是单向引用，
+     * 只有activity持有vm引用，vm是不持有view的引用的，所以vm的构造方法中不能传入视图相关的对象
+     * ，所以这里的view接口和adapter都不应该传。
+     *
+     * 之所以会有这种写法，是受限于当时的技术水平和网络论调，在那个时代，网上绝大多数人
+     * 都是加了databinding就认为是mvvm了，实际上不是这样的，MVVM是一种架构模式，
+     * 而DataBinding是一个实现数据和UI绑定的框架，是构建MVVM模式的一个工具。
+     *
+     * 这段代码，我就保留，算是给大家一个"错误"的典范。正规的mvvm可以参考real_mvvm 包中的代码
+     * @param mNewsView
+     * @param mAdapter
+     */
     public NewsVM(INewsView mNewsView, NewsAdapter mAdapter) {
         this.mNewsView = mNewsView;
         this.mAdapter = mAdapter;
